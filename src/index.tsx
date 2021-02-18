@@ -93,27 +93,6 @@ export default function useDigitInput({
               }
             }
             break;
-          default:
-            if (e.key.length === 1 && !(e.metaKey || e.altKey || e.ctrlKey)) {
-              e.preventDefault();
-              if (acceptedCharacters.test(e.key)) {
-                onChange(val.substring(0, i) + e.key + val.substring(i + 1));
-                if (i + 1 < length) {
-                  const nextInput = inputs.current[i + 1];
-                  if (nextInput) {
-                    nextInput.focus();
-                    window.requestAnimationFrame(() => {
-                      nextInput.setSelectionRange(0, 1);
-                    });
-                  }
-                } else {
-                  const currentTarget = e.currentTarget;
-                  window.requestAnimationFrame(() => {
-                    currentTarget.setSelectionRange(0, 1);
-                  });
-                }
-              }
-            }
         }
       },
       onChange: (e) => {
